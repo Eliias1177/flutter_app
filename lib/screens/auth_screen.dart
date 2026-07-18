@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
+import '../db/database_helper.dart'; // <-- IMPORTACIÓN AGREGADA
 import '../widgets/custom_text_field.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/shake_widget.dart';
@@ -21,6 +22,7 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final _authService = AuthService();
+  final _db = DatabaseHelper.instance; // <-- VARIABLE _db AGREGADA
 
   bool _isLogin = true;
   bool _loading = false;
@@ -160,6 +162,9 @@ class _AuthScreenState extends State<AuthScreen> {
       _isLogin = true;
       _clearFields();
     });
+
+    // <-- IMPRESIÓN DE DEPURACIÓN AGREGADA AQUÍ
+    await _db.imprimirUsuarios(); 
   }
 
   @override

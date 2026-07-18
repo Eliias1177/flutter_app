@@ -86,9 +86,23 @@ class DatabaseHelper {
     return db.delete('notes', where: 'id = ?', whereArgs: [id]);
   }
 
+  Future<int> updateNoteRow(Note note) async {
+    final db = await database;
+    return db.update('notes', note.toMap()..remove('id'), where: 'id = ?', whereArgs: [note.id]);
+  }
+
   Future<List<Note>> getNotesWithPendingReminders() async {
     final db = await database;
     final rows = await db.query('notes', where: 'reminderAt IS NOT NULL');
     return rows.map((r) => Note.fromMap(r)).toList();
+  }
+  Future<void> imprimirUsuarios() async {
+    final db = await database;
+    final users = await db.query('users');
+    print('\n=== USUARIOS EN LA BASE DE DATOS ===');
+    for (var u in users) {
+      print(u);
+    }
+    print('====================================\n');
   }
 }

@@ -8,24 +8,25 @@ import 'package:timezone/data/latest.dart' as tzdata;
 class NotificationService {
   NotificationService._internal();
   static final NotificationService instance = NotificationService._internal();
+
   final _plugin = FlutterLocalNotificationsPlugin();
   bool _initialized = false;
 
   Future<void> init() async {
     if (_initialized) return;
     tzdata.initializeTimeZones();
-    
+
     const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
     const iosInit = DarwinInitializationSettings();
     const linuxInit = LinuxInitializationSettings(defaultActionName: 'Abrir');
-    
     const settings = InitializationSettings(android: androidInit, iOS: iosInit, linux: linuxInit);
+
     await _plugin.initialize(settings);
-    
+
     final androidImpl = _plugin
         .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
     await androidImpl?.requestNotificationsPermission();
-    
+
     _initialized = true;
   }
 
@@ -37,11 +38,16 @@ class NotificationService {
     required DateTime scheduledDate,
   }) async {
     await init();
+    // Convertimos explícitamente a UTC en vez de confiar en tz.local (que por
+    // defecto queda en UTC si nunca se llama a setLocalLocation con la zona
+    // real del dispositivo). Así el instante programado siempre es correcto,
+    // sin importar la zona horaria del teléfono.
+    final tzScheduled = tz.TZDateTime.from(scheduledDate.toUtc(), tz.UTC);
     await _plugin.zonedSchedule(
       id,
       title,
       body,
-      tz.TZDateTime.from(scheduledDate, tz.local),
+      tzScheduled,
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'reminders_channel',

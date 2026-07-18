@@ -4,6 +4,7 @@ import '../models/user_model.dart';
 import '../db/database_helper.dart';
 import '../services/notification_service.dart';
 import 'notes_screen.dart';
+import 'auth_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final AppUser user;
@@ -39,12 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
     for (final note in notes) {
       final due = note.reminderAt!;
       if (due.isBefore(now) && due.isAfter(now.subtract(const Duration(minutes: 1)))) {
-        await NotificationService.instance.scheduleReminder(
-          id: note.id ?? 0,
-          title: 'Recordatorio: ${note.title}',
-          body: note.content,
-          scheduledDate: now.add(const Duration(seconds: 2)),
-        );
+        try {
+          await NotificationService.instance.scheduleReminder(
+            id: note.id ?? 0,
+            title: 'Recordatorio: ${note.title}',
+            body: note.content,
+            scheduledDate: now.add(const Duration(seconds: 2)),
+          );
+        } catch (_) {}
       }
     }
   }
@@ -85,7 +88,18 @@ class _HomeScreenState extends State<HomeScreen> {
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text('Cerrar sesión'),
-              onTap: () => Navigator.of(context).popUntil((r) => r.isFirst),
+              onTap: () {
+                Navigator.pop(context); // cierra el Drawer primero
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (_) => AuthScreen(
+                      themeMode: widget.themeMode,
+                      onToggleTheme: widget.onToggleTheme,
+                    ),
+                  ),
+                  (route) => false, // elimina TODO el stack anterior (Home, Notes, etc.)
+                );
+              },
             ),
           ],
         ),
