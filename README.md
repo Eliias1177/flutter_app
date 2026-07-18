@@ -1,6 +1,4 @@
-Entiendo, lo que pasa es que GitHub necesita que el texto tenga los símbolos de formato (los asteriscos y los hashtags) para poder acomodar los títulos, las negritas y las listas correctamente. Si se pega como texto completamente plano, GitHub lo junta todo en un solo bloque.
 
-Copia exactamente el texto que está aquí abajo (con todo y los símbolos `##` y `*`) y pégalo en tu archivo de GitHub. Así se verá con diseño profesional:
 
 # Flutter App - Gestión de Notas Avanzada
 
