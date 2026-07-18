@@ -41,9 +41,6 @@ Para correr este proyecto en tu entorno local, asegúrate de tener el SDK de Flu
 
 ---
 
-## Contexto Académico y Autor
-
-Este proyecto fue desarrollado como parte de las prácticas y evaluaciones de la **Ingeniería en Tecnologías de la Información e Innovación Digital**.
 
 **Desarrollado por:**
 
