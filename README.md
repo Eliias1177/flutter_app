@@ -10,8 +10,8 @@ Aplicación móvil multiplataforma desarrollada en Flutter con arquitectura robu
 
 * **Institución:** Universidad Politécnica de la Región Ribereña (UPRR)
 * **Carrera:** Ingeniería en Tecnologías de la Información e Innovación Digital
-* **Materia:** 
-* **Grupo:** 
+* **Materia: Programación Movil ** 
+* **Grupo: ITIID-24** 
 * **Autores:** 
   * Jesús Elías Arriaga Salinas
 * **Profesor:**
