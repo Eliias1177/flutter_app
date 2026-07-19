@@ -1,5 +1,5 @@
 
-```markdown
+
 # Gestión de Notas Avanzada - App en Flutter
 
 Aplicación móvil multiplataforma desarrollada en Flutter con arquitectura robusta. Implementa autenticación, persistencia local, consumo de APIs, procesos asíncronos mediante Isolates y notificaciones nativas a nivel de sistema.
