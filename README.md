@@ -23,6 +23,9 @@ Aplicación móvil multiplataforma desarrollada en Flutter con arquitectura robu
 
 Este proyecto es una prueba de concepto integral que demuestra el manejo avanzado del hardware y software de un dispositivo mediante Flutter. La aplicación incluye un sistema de Login/Registro animado, una base de datos local cifrada y sincronización simulada con una API REST en la nube. Supera las restricciones modernas de Android (SDK 34+) gestionando permisos para alarmas exactas y ejecutando notificaciones reales en segundo plano, además de permitir la exportación de registros locales a archivos .txt.
 
+Video Demostrativo:
+https://youtube.com/shorts/OP3HNJ-xua8?si=IkwmjY2ecYMKvc52
+
 ---
 
 ## Características Principales
